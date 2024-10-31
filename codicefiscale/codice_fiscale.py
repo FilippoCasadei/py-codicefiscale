@@ -10,6 +10,10 @@ CONVERSIONE_MESE_LETTERA = {
     '01': 'A', '02': 'B', '03': 'C', '04': 'D', '05': 'E', '06': 'H',
     '07': 'L', '08': 'M', '09': 'P', '10': 'R', '11': 'S', '12': 'T'
 }
+CONVERSIONE_MESE_LETTERA_INVERSA = {
+    'A': '01', 'B': '02', 'C': '03', 'D': '04', 'E': '05', 'H': '06',
+    'L': '07', 'M': '08', 'P': '09', 'R': '10', 'S': '11', 'T': '12'
+}
 VAL_SOMMARE_GIORNO_FEMM = 40
 COMUNI_COD_CATASTALI = _crea_dict_denominazione_codice_catastale_da_csv("tabella_comuni.csv")
 STATI_COD_CATASTALI = _crea_dict_denominazione_codice_catastale_da_csv("tabella_stati.csv")
@@ -271,3 +275,53 @@ def valida_comune(comune):
     if comune not in COMUNI_E_STATI_COD_CATASTALI:
         raise ValueError("Comune/Stato non valido. Deve essere presente un comune o uno stato estero esistente.")
     return comune
+
+
+########################
+# FUNZIONI DI ENCODING #
+########################
+def get_sesso(codice_fiscale: str) -> str:
+    """Estrae il sesso dal codice fiscale.
+
+    Args:
+        codice_fiscale (str): Codice fiscale valido.
+
+    Returns:
+        str: 'M' per maschio, 'F' per femmina.
+    """
+    giorno = int(codice_fiscale[9:11])
+    return 'F' if giorno > 31 else 'M'
+
+
+def get_data_nascita(codice_fiscale: str) -> str:
+    """Estrae la data di nascita dal codice fiscale.
+
+    Args:
+        codice_fiscale (str): Codice fiscale valido.
+
+    Returns:
+        str: Data di nascita in formato 'DD/MM/YYYY'.
+    """
+    anno = int(codice_fiscale[6:8])
+    anno += 1900 if anno >= 0 else 2000
+
+    mese = CONVERSIONE_MESE_LETTERA_INVERSA.get(codice_fiscale[8])
+
+    giorno = int(codice_fiscale[9:11])
+    if giorno > 31:
+        giorno -= 40  # Regola per femmine
+
+    return f"{str(giorno).zfill(2)}/{mese}/{anno}"
+
+
+def get_comune(codice_fiscale: str) -> str:
+    """Estrae il comune di nascita dal codice fiscale.
+
+    Args:
+        codice_fiscale (str): Codice fiscale valido.
+
+    Returns:
+        str: Nome del comune o stato.
+    """
+    codice_catastale = codice_fiscale[11:15]
+    return COMUNI_E_STATI_COD_CATASTALI.get(codice_catastale, "Codice catastale non valido")
