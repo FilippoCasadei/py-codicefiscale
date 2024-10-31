@@ -82,3 +82,38 @@ def test_codifica_comune(comune, expected):
 ])
 def test_calcola_carattere_controllo(codice_senza_controllo, expected):
     assert calcola_carattere_controllo(codice_senza_controllo) == expected
+
+
+###########################
+# TEST PER ENCODING SESSO #
+###########################
+@pytest.mark.parametrize("codice_fiscale, expected_sesso", [
+    ("RSSMRA85M01H501Z", "M"),  # Giorno <= 31, maschio
+    ("RSSMRA85M41H501Z", "F"),  # Giorno > 31, femmina
+])
+def test_get_sesso(codice_fiscale, expected_sesso):
+    assert get_sesso(codice_fiscale) == expected_sesso
+
+
+#####################################
+# TEST PER ENCODING DATA DI NASCITA #
+#####################################
+@pytest.mark.parametrize("codice_fiscale, expected_data", [
+    ("RSSMRA85M01H501Z", "01/08/1985"),  # 01 agosto 1985
+    ("BRNLNZ03C22F205A", "22/03/2003"),  # 22 marzo 2003
+    ("VRDLNZ87E62F839A", "22/05/1987"),  # 22 maggio 1987 (femmina, giorno = 62-40)
+])
+def test_get_data_nascita(codice_fiscale, expected_data):
+    assert get_data_nascita(codice_fiscale) == expected_data
+
+
+############################
+# TEST PER ENCODING COMUNE #
+############################
+@pytest.mark.parametrize("codice_fiscale, expected_comune", [
+    ("RSSMRA85M01H501Z", "ROMA"),           # Codice catastale H501 -> ROMA
+    ("BRNLNZ03C22Z100A", "ALBANIA"),    # Codice catastale Z404 -> INGHILTERRA
+    ("RSSMRA85M01XXXXZ", None),  # Codice catastale non valido
+])
+def test_get_comune(codice_fiscale, expected_comune):
+    assert get_comune(codice_fiscale) == expected_comune

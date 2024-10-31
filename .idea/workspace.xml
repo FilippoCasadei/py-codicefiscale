@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60ac73a5-5478-4445-a087-bf0132e41613" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codicefiscale/codice_fiscale.py" beforeDir="false" afterPath="$PROJECT_DIR$/codicefiscale/codice_fiscale.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/tabella_comuni.csv" beforeDir="false" afterPath="$PROJECT_DIR$/codicefiscale/data/tabella_comuni.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/tabella_stati.csv" beforeDir="false" afterPath="$PROJECT_DIR$/codicefiscale/data/tabella_stati.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_codice_fiscale.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_codice_fiscale.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +37,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python tests.Python tests in test_codice_fiscale.py.executor": "Run",
+    "Python.codice_fiscale.executor": "Run",
+    "Python.test_codice_fiscale.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\filo2\PycharmProjects\codiceFiscaleLib\codicefiscale" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

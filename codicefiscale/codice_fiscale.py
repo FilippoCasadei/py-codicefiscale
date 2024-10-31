@@ -1,5 +1,5 @@
 import string
-from utils import _crea_dict_denominazione_codice_catastale_da_csv, _formatta_stringa, _estrai_caratteri
+from codicefiscale.utils import _crea_dict_denominazione_codice_catastale_da_csv, _formatta_stringa, _estrai_caratteri
 from datetime import datetime, date
 
 
@@ -303,7 +303,7 @@ def get_data_nascita(codice_fiscale: str) -> str:
         str: Data di nascita in formato 'DD/MM/YYYY'.
     """
     anno = int(codice_fiscale[6:8])
-    anno += 1900 if anno >= 0 else 2000
+    anno += 1900 if anno >= 24 else 2000
 
     mese = CONVERSIONE_MESE_LETTERA_INVERSA.get(codice_fiscale[8])
 
@@ -314,14 +314,21 @@ def get_data_nascita(codice_fiscale: str) -> str:
     return f"{str(giorno).zfill(2)}/{mese}/{anno}"
 
 
-def get_comune(codice_fiscale: str) -> str:
-    """Estrae il comune di nascita dal codice fiscale.
+def get_comune(codice_fiscale: str) -> str | None:
+    """Estrae il comune di nascita dal codice fiscale utilizzando il dizionario COMUNI_E_STATI_COD_CATASTALI.
 
     Args:
         codice_fiscale (str): Codice fiscale valido.
 
     Returns:
-        str: Nome del comune o stato.
+        str: Nome del comune o stato se trovato, altrimenti "Codice catastale non valido".
     """
     codice_catastale = codice_fiscale[11:15]
-    return COMUNI_E_STATI_COD_CATASTALI.get(codice_catastale, "Codice catastale non valido")
+
+    # Cerca il codice catastale nel dizionario dei comuni
+    for comune, codice in COMUNI_E_STATI_COD_CATASTALI.items():
+        if codice == codice_catastale:
+            return comune  # Ritorna il comune trovato
+
+    # Se non trovato, ritorna None
+    return None
