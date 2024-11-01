@@ -18,7 +18,7 @@ pip install codicefiscale-ita
 La libreria richiede Python 3.7 o superiore.
 
 ## Utilizzo
-### Generazione del Codice Fiscale
+- ### Generazione del Codice Fiscale
 Genera un codice fiscale a partire dai dati personali come cognome, nome, sesso, data di nascita e comune di nascita.
 
 ```
@@ -34,7 +34,7 @@ codice_fiscale = genera_codice_fiscale(
 print(codice_fiscale)  # Output: RSSMRA85A01H501Z
 ```
 
-### Validazione del Codice Fiscale
+- ### Validazione del Codice Fiscale
 Verifica se un codice fiscale è valido e conforme agli standard.
 
 ```
