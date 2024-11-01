@@ -7,12 +7,16 @@ Una libreria Python per la generazione, validazione e decodifica del codice fisc
 Per installare la libreria, utilizzare pip:
 
 ```bash
-pip install codicefiscale
+pip install codicefiscale-ita
 ```
 ## Funzionalità
 - **Generazione Codice Fiscale**: Crea un codice fiscale da dati anagrafici.
 - **Validazione Codice Fiscale**: Verifica la correttezza del codice fiscale.
 - **Estrazione Informazioni**: Rileva sesso, data e luogo di nascita dal codice fiscale.
+
+## Requisiti di Sistema
+La libreria richiede Python 3.7 o superiore.
+
 ## Utilizzo
 ### Generazione del Codice Fiscale
 Genera un codice fiscale a partire dai dati personali come cognome, nome, sesso, data di nascita e comune di nascita.
@@ -71,3 +75,12 @@ from codicefiscale import get_comune
 comune = get_comune("RSSMRA85A01H501Z")
 print(comune)  # Output: Roma
 ```
+
+## Contributi
+I contributi sono benvenuti! Se hai suggerimenti, segnalazioni di bug o nuove funzionalità da proporre, sentiti libero di aprire una issue o di fare una pull request sul repository GitHub.
+
+## Licenza
+Questa libreria è rilasciata sotto la licenza MIT. Per ulteriori informazioni, consulta il file LICENSE.
+
+## Contatti
+Per ulteriori informazioni, contattaci a filippo.casadei2004@gmail.com.
