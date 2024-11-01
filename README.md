@@ -1,4 +1,4 @@
-# py-codicefiscale
+# Descrizione progetto
 
 Una libreria Python per la generazione, validazione e decodifica del codice fiscale italiano. La libreria permette di creare un codice fiscale a partire dai dati anagrafici, verificarne la correttezza e ottenere informazioni come sesso, data e luogo di nascita.
 
