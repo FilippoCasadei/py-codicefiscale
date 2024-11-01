@@ -321,7 +321,7 @@ def get_comune(codice_fiscale: str) -> str | None:
         codice_fiscale (str): Codice fiscale valido.
 
     Returns:
-        str: Nome del comune o stato se trovato, altrimenti "Codice catastale non valido".
+        str: Nome del comune o stato se trovato, altrimenti None".
     """
     codice_catastale = codice_fiscale[11:15]
 
